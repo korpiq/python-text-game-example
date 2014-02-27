@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import subprocess
+from subprocess import Popen, PIPE
 import game
 
 def will(expected, actual, assumption):
@@ -13,4 +13,18 @@ will('You are at start', g.start(), 'start output')
 will('You cannot act unexpectedly', g.do('act unexpectedly'), 'unexpected action handling')
 will('You go to end', g.do('go to end'), 'expected action')
 
-will("You are at start\n", subprocess.check_output(['./game.py']), 'start from command line')
+def command_will(expected, input, assumption):
+    game_process = Popen(['./game.py'], stdin=PIPE, stdout=PIPE)
+    will(
+        expected,
+        game_process.communicate(input)[0],
+        assumption
+    )
+
+command_will("You are at start\n", '', 'start from command line')
+
+command_will(
+    "You are at start\nYou go to end\n",
+    "go to end\n",
+    'play from command line'
+)
