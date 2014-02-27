@@ -13,4 +13,4 @@ will('You are at start', g.start(), 'start output')
 will('You cannot act unexpectedly', g.do('act unexpectedly'), 'unexpected action handling')
 will('You go to end', g.do('go to end'), 'expected action')
 
-will('You are at start', subprocess.check_output(['./game.py']), 'start from command line')
+will("You are at start\n", subprocess.check_output(['./game.py']), 'start from command line')

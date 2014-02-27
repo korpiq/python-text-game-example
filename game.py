@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 actions = {
     'go to end': 'You go to end'
 }
@@ -10,4 +12,7 @@ class Game:
         if action in actions:
             return actions[action]
         return 'You cannot act unexpectedly' 
+
+if __name__ == '__main__':
+    print(Game().start())
 
