@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import sys
+
 actions = {
     'go to end': 'You go to end'
 }
@@ -14,5 +16,13 @@ class Game:
         return 'You cannot act unexpectedly' 
 
 if __name__ == '__main__':
-    print(Game().start())
+    game = Game()
+    output = game.start()
+
+    while output:
+        print(output)
+        input = sys.stdin.readline().strip()
+        if not input:
+            break
+        output = game.do(input)
 
