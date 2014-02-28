@@ -33,8 +33,9 @@ command_will(start_output + "\n", '', 'start from command line')
 # newline will not exit but reprint situation.
 command_will("%s\n%s\n" % (start_output, start_output), "\n", 'start from command line')
 
+# full play through will exit game at end.
 command_will(
     "\n".join([ start_output, halfway_output, end_output, '' ]),
-    "go halfway\ngo to end\n",
+    "go halfway\ngo to end\n\n",
     'play from command line'
 )

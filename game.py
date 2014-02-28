@@ -35,12 +35,11 @@ class Game:
 
 if __name__ == '__main__':
     game = Game()
-    output = game.start()
+    print(game.start())
 
-    while output:
-        print(output)
+    while game.place:
         input = sys.stdin.readline()
         if not input:
             break
-        output = game.do(input.strip())
+        print(game.do(input.strip()))
 
