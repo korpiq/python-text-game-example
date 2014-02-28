@@ -9,7 +9,7 @@ def will(expected, actual, assumption):
     print('%s ok' % assumption)
 
 start_output = "You are at start.\nYou can go halfway."
-halfway_output = "You go halfway.\nYou are at halfway.\nYou can go to end."
+halfway_output = "You go halfway.\nYou are at halfway.\nYou can go back, or go to end."
 end_output = "You go to end.\nGame over."
 
 g = game.Game()
@@ -18,6 +18,8 @@ g = game.Game()
 will(start_output, g.start(), 'start output')
 will('You cannot go to end', g.do('go to end'), 'unexpected action handling')
 will(halfway_output, g.do('go halfway'), 'another place')
+will("You go back.\n" + start_output, g.do('go back'), 'return to start for good measure')
+will(halfway_output, g.do('go halfway'), 'go to another place again')
 will(end_output, g.do('go to end'), 'expected action')
 
 def command_will(expected, input, assumption):
