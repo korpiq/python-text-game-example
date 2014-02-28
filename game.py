@@ -20,10 +20,12 @@ class Game:
 	return self.explanation()
 
     def do(self, action):
-        if action in places[self.place]:
-            self.place = places[self.place][action]
-	    return 'You %s.\n%s' % (action, self.explanation())
-        return 'You cannot %s' % action 
+        if action:
+            if action in places[self.place]:
+                self.place = places[self.place][action]
+	        return 'You %s.\n%s' % (action, self.explanation())
+            return 'You cannot %s' % action 
+        return self.explanation()
 
     def explanation(self):
         if self.place:
@@ -37,8 +39,8 @@ if __name__ == '__main__':
 
     while output:
         print(output)
-        input = sys.stdin.readline().strip()
+        input = sys.stdin.readline()
         if not input:
             break
-        output = game.do(input)
+        output = game.do(input.strip())
 
