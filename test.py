@@ -9,14 +9,16 @@ def will(expected, actual, assumption):
     print('%s ok' % assumption)
 
 start_output = "You are at start.\nYou can go halfway."
+halfway_output = "You go halfway.\nYou are at halfway.\nYou can go to end."
+end_output = "You go to end.\nYou are at end.\nGame over."
 
 g = game.Game()
 
 # basic walkthrough with an erroneous input
 will(start_output, g.start(), 'start output')
 will('You cannot go to end', g.do('go to end'), 'unexpected action handling')
-will('You go halfway', g.do('go halfway'), 'another place')
-will('You go to end', g.do('go to end'), 'expected action')
+will(halfway_output, g.do('go halfway'), 'another place')
+will(end_output, g.do('go to end'), 'expected action')
 
 def command_will(expected, input, assumption):
     game_process = Popen(['./game.py'], stdin=PIPE, stdout=PIPE)
@@ -29,7 +31,7 @@ def command_will(expected, input, assumption):
 command_will(start_output + "\n", '', 'start from command line')
 
 command_will(
-    start_output + "\nYou go halfway\nYou go to end\n",
+    "\n".join([ start_output, halfway_output, end_output ]),
     "go halfway\ngo to end\n",
     'play from command line'
 )

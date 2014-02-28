@@ -23,7 +23,7 @@ class Game:
     def do(self, action):
         if action in places[self.place]:
             self.place = places[self.place][action]
-	    return 'You %s' % action
+	    return 'You %s.\n%s' % (action, self.explanation())
         return 'You cannot %s' % action 
 
     def explanation(self):
