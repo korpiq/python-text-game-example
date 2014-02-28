@@ -18,13 +18,17 @@ class Game:
 
     def start(self):
         self.place = 'start'
-	return 'You are at start'
+	return self.explanation()
 
     def do(self, action):
         if action in places[self.place]:
             self.place = places[self.place][action]
 	    return 'You %s' % action
         return 'You cannot %s' % action 
+
+    def explanation(self):
+        available_actions = ", ".join(places[self.place].keys())
+        return "You are at %s.\nYou can %s." % (self.place, available_actions)
 
 if __name__ == '__main__':
     game = Game()

@@ -8,10 +8,12 @@ def will(expected, actual, assumption):
         raise UserWarning("%s failed: expected '%s', got '%s'" % (assumption, expected, actual))
     print('%s ok' % assumption)
 
+start_output = "You are at start.\nYou can go halfway."
+
 g = game.Game()
 
 # basic walkthrough with an erroneous input
-will('You are at start', g.start(), 'start output')
+will(start_output, g.start(), 'start output')
 will('You cannot go to end', g.do('go to end'), 'unexpected action handling')
 will('You go halfway', g.do('go halfway'), 'another place')
 will('You go to end', g.do('go to end'), 'expected action')
@@ -24,10 +26,10 @@ def command_will(expected, input, assumption):
         assumption
     )
 
-command_will("You are at start\n", '', 'start from command line')
+command_will(start_output + "\n", '', 'start from command line')
 
 command_will(
-    "You are at start\nYou go halfway\nYou go to end\n",
+    start_output + "\nYou go halfway\nYou go to end\n",
     "go halfway\ngo to end\n",
     'play from command line'
 )
