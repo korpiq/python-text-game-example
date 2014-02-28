@@ -7,9 +7,8 @@ places = {
         'go halfway': 'halfway'
     },
     'halfway': {
-        'go to end': 'end',
+        'go to end': None,
     },
-    'end': None
 }
 
 class Game:
@@ -27,8 +26,10 @@ class Game:
         return 'You cannot %s' % action 
 
     def explanation(self):
-        available_actions = ", ".join(places[self.place].keys())
-        return "You are at %s.\nYou can %s." % (self.place, available_actions)
+        if self.place:
+            available_actions = ", ".join(places[self.place].keys())
+            return "You are at %s.\nYou can %s." % (self.place, available_actions)
+        return "Game over."
 
 if __name__ == '__main__':
     game = Game()

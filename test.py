@@ -10,7 +10,7 @@ def will(expected, actual, assumption):
 
 start_output = "You are at start.\nYou can go halfway."
 halfway_output = "You go halfway.\nYou are at halfway.\nYou can go to end."
-end_output = "You go to end.\nYou are at end.\nGame over."
+end_output = "You go to end.\nGame over."
 
 g = game.Game()
 
@@ -31,7 +31,7 @@ def command_will(expected, input, assumption):
 command_will(start_output + "\n", '', 'start from command line')
 
 command_will(
-    "\n".join([ start_output, halfway_output, end_output ]),
+    "\n".join([ start_output, halfway_output, end_output, '' ]),
     "go halfway\ngo to end\n",
     'play from command line'
 )
