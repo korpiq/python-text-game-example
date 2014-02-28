@@ -3,7 +3,8 @@
 import sys
 
 actions = {
-    'go to end': 'You go to end'
+    'go to end': 'You go to end',
+    'go halfway': 'You go halfway'
 }
 
 class Game:
